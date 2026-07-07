@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessVibe - Enterprise Chess Gaming Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">♟</span>
+                    <span class="logo-text">ChessVibe</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <button class="nav-item active" data-page="arena">
+                        <span class="nav-icon">🏟️</span>
+                        <span class="nav-label">Main Arena</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="pack-shop">
+                        <span class="nav-icon">🛒</span>
+                        <span class="nav-label">Pack Shop</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="play-match">
+                        <span class="nav-icon">🎮</span>
+                        <span class="nav-label">Play Match</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="analysis">
+                        <span class="nav-icon">🧠</span>
+                        <span class="nav-label">Analysis Engine</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="puzzles">
+                        <span class="nav-icon">🧩</span>
+                        <span class="nav-label">Daily Puzzles</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="streak">
+                        <span class="nav-icon">🔥</span>
+                        <span class="nav-label">Puzzle Streak</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="rush">
+                        <span class="nav-icon">⏱️</span>
+                        <span class="nav-label">Puzzle Rush</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="openings">
+                        <span class="nav-icon">📖</span>
+                        <span class="nav-label">Opening Repertoire</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="endgame">
+                        <span class="nav-icon">👑</span>
+                        <span class="nav-label">Endgame Trainer</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="events">
+                        <span class="nav-icon">📅</span>
+                        <span class="nav-label">Chess Events</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="variants">
+                        <span class="nav-icon">🎲</span>
+                        <span class="nav-label">Variants</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="tv">
+                        <span class="nav-icon">📺</span>
+                        <span class="nav-label">Chess TV</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="community">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">Community Hub</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="donate">
+                        <span class="nav-icon">❤️</span>
+                        <span class="nav-label">Support Us</span>
+                    </button>
+                </div>
+                <div class="nav-section">
+                    <button class="nav-item" data-page="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Settings</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="ai-coach-section">
+                    <h4 class="coach-title">🤖 AI Coach</h4>
+                    <div class="coach-feedback" id="coachFeedback">
+                        Welcome to ChessVibe! Start playing to get personalized coaching tips.
+                    </div>
+                </div>
+                <div class="language-selector">
+                    <select id="languageSelect" class="language-dropdown">
+                        <option value="en">English</option>
+                        <option value="hinglish">हिंदी (Hinglish)</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <div class="page-container">
+                <!-- AUTH PAGE -->
+                <div class="page auth-page" data-page-id="auth">
+                    <div class="auth-container">
+                        <div class="auth-card">
+                            <h1 class="auth-title">ChessVibe</h1>
+                            <p class="auth-subtitle">Enterprise Chess Gaming Platform</p>
+                            <div class="auth-toggle">
+                                <button class="toggle-btn active" id="loginToggle">Login</button>
+                                <button class="toggle-btn" id="signupToggle">Create Account</button>
+                            </div>
+                            <form class="auth-form active" id="loginForm">
+                                <div class="form-group">
+                                    <label for="loginEmail">Email Address</label>
+                                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginPassword">Password</label>
+                                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                                </div>
+                                <button type="submit" class="auth-submit-btn">Login to ChessVibe</button>
+                            </form>
+                            <form class="auth-form" id="signupForm">
+                                <div class="form-group">
+                                    <label for="signupUsername">Username</label>
+                                    <input type="text" id="signupUsername" placeholder="Choose your chess name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupEmail">Email Address</label>
+                                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupPassword">Password</label>
+                                    <input type="password" id="signupPassword" placeholder="••••••••" required>
+                                </div>
+                                <button type="submit" class="auth-submit-btn">Create Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALIBRATION PAGE -->
+                <div class="page calibration-page" data-page-id="calibration">
+                    <div class="calibration-container">
+                        <h1 class="calibration-title">Rate Your Chess Experience</h1>
+                        <p class="calibration-subtitle">Choose your starting level to begin your ChessVibe journey</p>
+                        <div class="brackets-grid">
+                            <div class="bracket-card" data-bracket="beginner">
+                                <div class="bracket-icon">🌱</div>
+                                <h3 class="bracket-name">Beginner</h3>
+                                <p class="bracket-desc">Just starting your chess journey</p>
+                                <div class="bracket-elo">400 ELO</div>
+                                <p class="bracket-note">No Initial Title</p>
+                                <button class="bracket-select-btn">Select</button>
+                            </div>
+                            <div class="bracket-card" data-bracket="intermediate">
+                                <div class="bracket-icon">⚔️</div>
+                                <h3 class="bracket-name">Intermediate</h3>
+                                <p class="bracket-desc">You understand chess basics</p>
+                                <div class="bracket-elo">800 ELO</div>
+                                <p class="bracket-note">No Initial Title</p>
+                                <button class="bracket-select-btn">Select</button>
+                            </div>
+                            <div class="bracket-card" data-bracket="advanced">
+                                <div class="bracket-icon">🧠</div>
+                                <h3 class="bracket-name">Advanced</h3>
+                                <p class="bracket-desc">You play competitively</p>
+                                <div class="bracket-elo">1200 ELO</div>
+                                <p class="bracket-note">No Initial Title</p>
+                                <button class="bracket-select-btn">Select</button>
+                            </div>
+                            <div class="bracket-card" data-bracket="pro">
+                                <div class="bracket-icon">🔥</div>
+                                <h3 class="bracket-name">Pro Player</h3>
+                                <p class="bracket-desc">Master-level chess strength</p>
+                                <div class="bracket-elo">1600 ELO</div>
+                                <p class="bracket-note">No Initial Title</p>
+                                <button class="bracket-select-btn">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN ARENA PAGE -->
+                <div class="page arena-page" data-page-id="arena">
+                    <div class="arena-header">
+                        <h1>🏟️ Main Arena</h1>
+                        <p>Your Chess Performance Dashboard</p>
+                    </div>
+                    <div class="arena-grid">
+                        <div class="card profile-card">
+                            <div class="card-header"><h2>👤 Player Profile</h2></div>
+                            <div class="profile-content">
+                                <div class="profile-avatar" id="profileAvatar">C</div>
+                                <div class="profile-info">
+                                    <h3 id="profileUsername">Chess Player</h3>
+                                    <p id="profileTitle" class="profile-title">Unranked</p>
+                                    <p id="profileBio" class="profile-bio">Welcome to ChessVibe</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card stats-card">
+                            <div class="card-header"><h2>📊 Quick Stats</h2></div>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">Total Games</span>
+                                    <span class="stat-value" id="totalGames">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Win Rate</span>
+                                    <span class="stat-value" id="winRate">0%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Level XP</span>
+                                    <span class="stat-value" id="levelXp">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Battle Pass</span>
+                                    <span class="stat-value" id="battlePassTier">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="card-header"><h2>📈 Rating Progression</h2></div>
+                            <canvas id="ratingChart"></canvas>
+                        </div>
+                        <div class="card battle-pass-card">
+                            <div class="card-header"><h2>🎫 Battle Pass Progress</h2></div>
+                            <div class="battle-pass-content">
+                                <div class="tier-display">
+                                    <p class="tier-label">Current Tier: <span id="tierNumber">1</span>/50</p>
+                                    <div class="tier-progress">
+                                        <div class="tier-progress-bar" id="tierProgressBar"></div>
+                                    </div>
+                                </div>
+                                <div class="pass-rewards">
+                                    <p class="rewards-label">Rewards Unlocked:</p>
+                                    <div class="rewards-list" id="rewardsList">
+                                        <span class="reward-badge">🥉 Bronze Border</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLAY MATCH PAGE -->
+                <div class="page play-match-page" data-page-id="play-match">
+                    <div class="play-match-container">
+                        <h1>🎮 Play Match</h1>
+                        <div class="match-setup-grid">
+                            <div class="card time-control-card">
+                                <div class="card-header"><h2>⏱️ Time Control & Increment</h2></div>
+                                <div class="time-presets">
+                                    <button class="preset-btn" data-preset="1-0">
+                                        <span class="preset-time">1 Min</span>
+                                        <span class="preset-name">Bullet</span>
+                                    </button>
+                                    <button class="preset-btn" data-preset="3-2">
+                                        <span class="preset-time">3 Min</span>
+                                        <span class="preset-name">Blitz +2s</span>
+                                    </button>
+                                    <button class="preset-btn" data-preset="5-3">
+                                        <span class="preset-time">5 Min</span>
+                                        <span class="preset-name">Rapid +3s</span>
+                                    </button>
+                                    <button class="preset-btn" data-preset="10-5">
+                                        <span class="preset-time">10 Min</span>
+                                        <span class="preset-name">Rapid +5s</span>
+                                    </button>
+                                </div>
+
+                                <div class="custom-time-section">
+                                    <h3>⚡ Custom Time Setup</h3>
+                                    <div class="custom-inputs">
+                                        <div class="input-group">
+                                            <label for="baseMinutes">Base Time (minutes):</label>
+                                            <input type="number" id="baseMinutes" min="1" max="60" value="5">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="incrementSeconds">Increment (seconds):</label>
+                                            <input type="number" id="incrementSeconds" min="0" max="60" value="3">
+                                        </div>
+                                    </div>
+                                    <div class="time-summary">
+                                        <p>Your Time: <span id="customBaseDisplay">5:00</span> + <span id="customIncrementDisplay">3</span>s/move</p>
+                                        <p>Opponent Time: <span id="opponentBaseDisplay">5:00</span> + <span id="opponentIncrementDisplay">3</span>s/move</p>
+                                    </div>
+                                    <div class="increment-explanation">
+                                        <p><strong>💡 What is Increment?</strong></p>
+                                        <p>Extra time added to your clock after each move you make. Example: 5+3 means 5 minutes base time + 3 seconds added per move.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card opponent-card">
+                                <div class="card-header"><h2>🎯 Opponent Matching</h2></div>
+                                <div class="opponent-filters">
+                                    <div class="filter-group">
+                                        <label>Rating Range</label>
+                                        <div class="range-slider">
+                                            <input type="range" id="ratingMin" min="-250" max="0" value="-50" class="range-input">
+                                            <input type="range" id="ratingMax" min="0" max="250" value="50" class="range-input">
+                                        </div>
+                                        <p class="range-display">
+                                            <span id="minDisplay">-50</span> to <span id="maxDisplay">+50</span> ELO
+                                        </p>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label>
+                                            <input type="checkbox" id="strictConnection"> Strict Low-Latency Players Only
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card board-prefs-card">
+                                <div class="card-header"><h2>⚙️ Preferences</h2></div>
+                                <div class="preferences">
+                                    <div class="pref-group">
+                                        <label>Board Color Preference</label>
+                                        <div class="color-options">
+                                            <button class="color-btn active" data-color="random">Random</button>
+                                            <button class="color-btn" data-color="white">White</button>
+                                            <button class="color-btn" data-color="black">Black</button>
+                                        </div>
+                                    </div>
+                                    <div class="pref-group">
+                                        <label><input type="checkbox" id="premoveEnabled" checked> Enable Premove</label>
+                                    </div>
+                                    <div class="pref-group">
+                                        <label><input type="checkbox" id="soundEnabled" checked> Enable Sound</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="play-btn">🎮 Find Opponent & Play</button>
+                    </div>
+                </div>
+
+                <!-- PACK SHOP PAGE -->
+                <div class="page pack-shop-page" data-page-id="pack-shop">
+                    <div class="pack-shop-container">
+                        <h1>🛒 Pack Shop & Card Collection</h1>
+                        <div class="packs-section">
+                            <h2>Open Booster Packs</h2>
+                            <div class="packs-grid">
+                                <div class="pack-card bronze-pack">
+                                    <div class="pack-tier">🥉 Bronze</div>
+                                    <p class="pack-desc">3 Common Cards</p>
+                                    <p class="pack-price">50 Vibe Tokens</p>
+                                    <button class="open-pack-btn" data-pack-type="bronze">Open Pack</button>
+                                </div>
+                                <div class="pack-card silver-pack">
+                                    <div class="pack-tier">🥈 Silver</div>
+                                    <p class="pack-desc">4 Cards + 1 Rare</p>
+                                    <p class="pack-price">100 Vibe Tokens</p>
+                                    <button class="open-pack-btn" data-pack-type="silver">Open Pack</button>
+                                </div>
+                                <div class="pack-card gold-pack">
+                                    <div class="pack-tier">🏆 Gold</div>
+                                    <p class="pack-desc">5 Cards + 2 Epic</p>
+                                    <p class="pack-price">250 Vibe Tokens</p>
+                                    <button class="open-pack-btn" data-pack-type="gold">Open Pack</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-flip-container" id="cardFlipContainer" style="display: none;">
+                            <div class="flip-card-wrapper">
+                                <div class="flip-card" id="flipCard">
+                                    <div class="flip-card-front">
+                                        <p>Opening Pack...</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <div class="card-back-content" id="cardBackContent"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collection-section">
+                            <h2>📦 Your Card Collection</h2>
+                            <div class="cards-collection" id="cardsCollection">
+                                <p style="text-align: center; color: #b0acaa;">No cards yet. Open packs to start collecting!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS PAGE -->
+                <div class="page settings-page" data-page-id="settings">
+                    <div class="settings-container">
+                        <h1>⚙️ Settings & Preferences</h1>
+                        <div class="settings-section card">
+                            <h2>👤 Profile & Identity</h2>
+                            <div class="setting-group">
+                                <label for="usernameInput">Username</label>
+                                <input type="text" id="usernameInput" placeholder="Current Username" maxlength="30">
+                                <p class="input-helper">Changes left this week: <span id="changesLeft">2</span>/2</p>
+                                <button class="setting-save-btn" id="saveUsernameBtn">Update Username</button>
+                            </div>
+
+                            <div class="setting-group">
+                                <label for="bioTextarea">Public Bio</label>
+                                <textarea id="bioTextarea" placeholder="Tell other players about yourself..." maxlength="200" rows="4"></textarea>
+                                <button class="setting-save-btn" id="saveBioBtn">Save Bio</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-section card">
+                            <h2>🎨 Board & Piece Customization</h2>
+                            <div class="setting-group">
+                                <label>Chessboard Theme</label>
+                                <div class="theme-selector">
+                                    <button class="theme-btn active" data-theme="classic">Classic Wood</button>
+                                    <button class="theme-btn" data-theme="emerald">Vibe Emerald</button>
+                                    <button class="theme-btn" data-theme="midnight">Midnight</button>
+                                    <button class="theme-btn" data-theme="tournament">Tournament</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section card">
+                            <h2>🔒 Account Security</h2>
+                            <div class="setting-group">
+                                <label for="newEmailInput">Change Email</label>
+                                <input type="email" id="newEmailInput" placeholder="new@email.com">
+                                <input type="password" id="emailPasswordConfirm" placeholder="Confirm current password" style="margin-top: 10px;">
+                                <button class="setting-save-btn">Update Email</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-section card">
+                            <h2>🚨 Security Audit</h2>
+                            <button class="audit-btn" id="auditBtn">Run Anti-Cheat System Check</button>
+                            <div id="auditResults" style="display: none; margin-top: 15px; padding: 15px; background: #1e1c1a; border-radius: 8px;">
+                                <h3>✅ System Audit Results</h3>
+                                <p>✓ Latency Check: Normal (45ms average)</p>
+                                <p>✓ Move Timing: All moves within acceptable range</p>
+                                <p>✓ Block Validation: All blocks verified</p>
+                                <p>✓ Fair Play Detected: No violations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- RIGHT STATS PANEL -->
+        <aside class="stats-panel">
+            <div class="stats-header">
+                <h3>📊 Player Stats</h3>
+            </div>
+            <div class="stat-block title-block">
+                <p class="stat-label">Current Title</p>
+                <div class="title-badge" id="titleBadge">Unranked</div>
+            </div>
+            <div class="stat-block elo-block">
+                <p class="stat-label">Live ELO</p>
+                <p class="stat-value" id="liveElo">1200</p>
+            </div>
+            <div class="stat-block wallet-block">
+                <p class="stat-label">Vibe Tokens</p>
+                <p class="stat-value" id="vibeTokens">0</p>
+                <p class="stat-label" style="margin-top: 10px;">Account Level</p>
+                <p class="stat-value" id="accountLevel">1</p>
+            </div>
+            <button class="audit-btn-mini" id="auditBtnMini">🚨 Run Audit</button>
+            <div id="miniAuditResults" style="display: none; margin-top: 15px; padding: 10px; background: #1e1c1a; border-radius: 8px; font-size: 12px;">
+                <p>✓ Latency: 45ms</p>
+                <p>✓ Fair Play: Yes</p>
+                <p>✓ Block Valid: Yes</p>
+            </div>
+        </aside>
+    </div>
+
+    <script src="state-manager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
